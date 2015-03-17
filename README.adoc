@@ -1,0 +1,95 @@
+= Final project
+
+Tweak the starter code as necessary to implement your final project.
+
+Go into your repo to receive this starter code:
+
+----
+$ git remote add prof git@github.com:lawrancej/COMP201Project.git
+
+$ git pull prof master
+From github.com:lawrancej/COMP201Project
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> prof/master
+
+$ git mergetool
+----
+
+Form small groups of 2-3 people (no more than 4, please) to create some
+program with a cool demo.
+
+Examples: connect 4, minesweeper, checkers, asteroids, paint program, hangman,
+simulator, solitaire, side scroller. 
+
+== Questions to answer
+
+* Who are you working with?
+* What on?
+** Bare minimum requirements
+** Ideal requirements
+* Who's going to do what?
+** Artwork
+** Game logic (Model)
+*** The underlying data structure (Stucts? Lists? Vectors? Arrays?)
+*** E.g., collision detection, is the game over, etc.
+** Handling input events (Controller)
+** Rendering the game to the screen (View)
+
+== Milestones
+
+* Informal demo on April 7
+
+== Goal
+
+On final exam day, we'll all demo our programs that we wrote.
+
+== References
+
+* https://wiki.libsdl.org/APIByCategory[SDL2 API reference]
+* http://lazyfoo.net/tutorials/SDL/[SDL2 tutorial]
+* http://opengameart.org/content/2d-complete-kit[Open Game Art]
+
+== Git stuff
+
+=== Books
+
+* http://mrchlblng.me/2014/09/practical-git-introduction/[A practical git introduction]
+* http://blog.anvard.org/conversational-git/[Conversational Git]
+* http://ftp.newartisans.com/pub/git.from.bottom.up.pdf[Git from the bottom up (PDF)]
+* https://github.com/pluralsight/git-internals-pdf/releases/download/v2.0/peepcode-git.pdf[Git Internals (PDF)]
+* http://cbx33.github.io/gitt/index.html[Git In The Trenches]
+* http://www-cs-students.stanford.edu/~blynn/gitmagic/[Git Magic]
+* http://chimera.labs.oreilly.com/books/1230000000561/index.html[Git Pocket Guide]
+* http://git-scm.com/book/en/v2[Pro Git]
+
+=== Guides/Tutorials
+
+* http://backlogtool.com/git-guide/en/[Git Beginner's Guide for Dummies]
+* http://rogerdudler.github.io/git-guide/[git - the simple guide]
+* http://gitimmersion.com/[Git Immersion]
+* https://www.atlassian.com/git/[Getting Git Right]
+* http://pcottle.github.io/learnGitBranching/?demo[Learn Git Branching]
+* http://rypress.com/tutorials/git/index[Ry's Git Tutorial]
+* http://think-like-a-git.net/[Think like (a) Git]
+* https://try.github.com/[Try Git]
+
+=== References
+
+* http://git-scm.com/docs[Git Documentation]
+* http://eagain.net/articles/git-for-computer-scientists/[Git for Computer Scientists]
+* http://gitref.org/[Git Reference]
+* https://github.com/tiimgreen/github-cheat-sheet[Github Cheat Sheet]
+* https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf[Github Git Cheat Sheet]
+* http://ndpsoftware.com/git-cheatsheet.html[Visual Git Cheat Sheet]
+* http://marklodato.github.io/visual-git-guide/index-en.html[A Visual Git Reference]
+* http://onlywei.github.io/explain-git-with-d3/#freeplay[Visualizing Git Concepts with D3]
+
+=== Troubleshooting
+
+* http://blackbe.lt/common-git-problems-and-solutions/[Common Git Problems]
+* http://justinhileman.info/article/git-pretty/[Git Pretty]
+* http://ibrokegit.com/[I Broke Git]
+* http://41j.com/blog/2015/02/common-git-screwupsquestions-solutions/[Most common git screw-ups]
+* http://www.google.com/[Paste error messages into Google]
+* `git status`
+* `gitk --all &`
