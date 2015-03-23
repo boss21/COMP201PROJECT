@@ -4,7 +4,7 @@ CFLAGS=-c -g -Wall -Dmain=SDL_main
 LDFLAGS=-I/usr/local/include/SDL2 -L/usr/local/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -w -Wl,-subsystem,windows
 SOURCES=model.cpp view.cpp controller.cpp main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=final.exe
+EXECUTABLE=fpp.exe
 
 all: $(SOURCES) $(EXECUTABLE)
 

@@ -34,13 +34,18 @@ View::View(string title, int width, int height) {
         return;
     }
     // Load assets
-//    snake = load("assets/snake.png");
-//    music = Mix_LoadMUS("assets/2Inventions_-_Johaness_Gilther_-_Don_t_leave_me.mp3");
-//    if (music != NULL) {
-//       Mix_PlayMusic( music, -1 );
-//    }
-//    food = Mix_LoadWAV("assets/yummy.wav");
-    font = TTF_OpenFont( "assets/LiberationSans-Regular.ttf", 28 );
+	cloud = load("assets/cloud.jpg");
+	plane = load("assets/plane.png");
+/*
+snake = load("assets/snake.png");
+    music = Mix_LoadMUS("assets/bmusic.mp3");
+    if (music != NULL) {
+        Mix_PlayMusic( music, -1 );
+    }
+    food = Mix_LoadWAV("assets/beating.wav");
+    dead = Mix_LoadWAV("assets/bcleveland.wav");
+    font = TTF_OpenFont( "assets/LiberationSans-Regular.ttf", 16 );
+	*/
 
 }
 
@@ -70,11 +75,16 @@ SDL_Surface* View::load(char * path) {
 }
 
 void View::show(Model * model) {
+	SDL_Rect dest;
+	dest.x = 487;
+	dest.y = 718;
+	dest.x = model->plane.x;
+	dest.y = model->plane.y;
+// background image
+	SDL_BlitSurface( cloud, NULL, screen, NULL );
+	SDL_BlitSurface( plane, NULL, screen, &dest );
 
-    SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format,
-        0x00, 0x00, 0x00));
-
-    // Probably call SDL_FillRect or SDL_BlitSurface a bunch here :-)
-
+	
+	
     SDL_UpdateWindowSurface(window);
 }
