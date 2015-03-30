@@ -28,7 +28,6 @@ private:
 	SDL_Surface* p[3];
 	int phase;
 	int dmg;
-	int count;
 //    SDL_Surface* text;
     Mix_Music * music;
     Mix_Chunk * bullet;

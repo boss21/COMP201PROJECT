@@ -1,7 +1,7 @@
 #ifndef _MODEL_H
 #define _MODEL_H
 
-enum Direction { SHOOT, IDLE, LEFT, RIGHT, DEAD };
+enum Direction { SHOOT, IDLE, LEFT, RIGHT, DEAD, EDEAD };
 
 typedef struct {
 	int x;

@@ -46,7 +46,6 @@ View::View(string title, int width, int height) {
 	eplane[3] = load("assets/eplane3.png");
 	phase = 0;
 	dmg = 0;
-	count = 0;
 
     music = Mix_LoadMUS("assets/bground.mp3");
     if (music != NULL) {
@@ -107,8 +106,6 @@ void View::show(Model * model) {
 	SDL_BlitSurface( plane[0], NULL, screen, &dest );
 	SDL_SetColorKey(eplane[0], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
 	SDL_BlitSurface( eplane[0], NULL, screen, & destnn );
-	
-	
 	// bullets move
 	if (model->direction == SHOOT)
 	{
@@ -116,33 +113,35 @@ void View::show(Model * model) {
 		SDL_BlitSurface(p[phase], NULL, screen, &destn );
 		phase = (phase + 1) % 3;
 	}
-	if ((model->direction == SHOOT) && (model->eplane.x > model->plane.x - 50) && (model->eplane.x < model->plane.x + 50))
-	{
-		// Stupid thing wont even show the 3 phases, need to find a way to delay
-		SDL_SetColorKey(eplane[dmg], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
-		SDL_BlitSurface(eplane[dmg], NULL, screen, &destnn );
-		dmg = (dmg + 1) % 4;
+			if ((model->direction == SHOOT) && (model->eplane.x > model->plane.x - 50) && (model->eplane.x < model->plane.x + 50))
+			{
+			// Stupid thing wont even show the 3 phases, need to find a way to delay
+			SDL_SetColorKey(eplane[dmg], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
+			SDL_BlitSurface(eplane[dmg], NULL, screen, &destnn );
+			dmg = (dmg + 1) % 4;
+			}
 	}
-		/*
+		
+		if (dmg == 1)
+		{
+			SDL_SetColorKey(eplane[1], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
+			SDL_BlitSurface(eplane[1], NULL, screen, &destnn );
+          SDL_Delay(300);
+		}
+		if (dmg == 2)
+		{
+			SDL_SetColorKey(eplane[2], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
+			SDL_BlitSurface(eplane[2], NULL, screen, &destnn );
+			SDL_Delay(300);
+		}
 		if (dmg == 3)
 		{
-          count = 1;
-		}
-		if (count == 1)
-			{
 			SDL_SetColorKey(eplane[3], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
 			SDL_BlitSurface(eplane[3], NULL, screen, &destnn );
-			model->go(EDEAD);
-			}
-		*/
-	}
-	if (dmg == 3) 
-		{ 
 			SDL_SetColorKey(plane[0], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
-			SDL_BlitSurface( plane[0], NULL, screen, &dest );
-			Mix_PlayChannel( -1, explos, 0 ); 
-			SDL_SetColorKey(eplane[3], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
-			SDL_BlitSurface(eplane[3], NULL, screen, &destnn );
+			SDL_BlitSurface(plane[0], NULL, screen, &dest );
+			Mix_PlayChannel( -1, explos, 0 );
+			SDL_Delay(300);
 			model->go(DEAD);
 		}
 	// planes collide
