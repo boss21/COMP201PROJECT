@@ -1,0 +1,1 @@
+8 pixel width between plane boundary and edge of map

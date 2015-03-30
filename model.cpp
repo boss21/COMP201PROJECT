@@ -8,23 +8,39 @@ using namespace std;
 Model::Model() {
 	plane.x = 487;
 	plane.y = 718;
-	direction = SHOOT; //not moving
+	srand(time(0));
+	eplane.x = (rand() % 50) * 19 + 21;
+	eplane.y = 0;
+	direction = IDLE; //not moving
 }
 // Destructor deletes dynamically allocated memory
 Model::~Model() {
 }
 bool Model::gameOver() {
-    return false;
+    return (direction == DEAD);
 }
-
 void Model::go(Direction d) {
 	direction = d;
 }
 //move left and right
 void Model::move() {
 	switch(direction) {
-		case LEFT: plane.x = plane.x - 50; break;
-		case RIGHT: plane.x = plane.x + 50; break;
+		case LEFT: 
+		if (plane.x > 30)
+		plane.x -= 4;
+		break;
+		case RIGHT:
+        if (plane.x < 944)
+		plane.x += 4;
+		break;
 		case SHOOT: break;
+		
+		case IDLE: break;
+	}
+}
+void Model::AIM() {
+	if (eplane.y < 768)
+	{
+			eplane.y ++;
 	}
 }

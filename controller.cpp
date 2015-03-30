@@ -23,12 +23,13 @@ void Controller::loop() {
     std::map<SDL_Keycode, Direction> direction;
     direction[SDLK_a] = LEFT;
     direction[SDLK_d] = RIGHT;
-	direction[SDLK_KP_SPACE] = SHOOT;
+	direction[SDLK_SPACE] = SHOOT;
 
-    while(!model->gameOver()) {
+while(!model->gameOver()) {
         currentTime = SDL_GetTicks();
         // Do stuff here to animate as 
-		if (currentTime > lastTime + 200) {
+		if (currentTime > lastTime + 30) {
+			model->AIM();
 			lastTime = currentTime;
 		}
 		
@@ -39,19 +40,24 @@ void Controller::loop() {
                 return;
             case SDL_KEYDOWN:
                 switch(e.key.keysym.sym) {
-                case SDLK_a:
-                case SDLK_d:
-				case SDLK_KP_SPACE:
-				model->go (direction[e.key.keysym.sym]);
-				model->move();
-				break;
-				default:
-				break;
+					case SDLK_a:
+					case SDLK_d:
+					case SDLK_SPACE:
+					model->go (direction[e.key.keysym.sym]);
+					model->move();
+					break;
+					default:
+					break;
                 }
+				break;
+			case SDL_KEYUP:
+				model->direction = IDLE;
+				
+				break;
             }
         }
     }
-    // TODO: show something nice?
+    // TODO: show something nice? (ONLY USEFUL WHEN GAMEOVER)
     view->show(model);
-    SDL_Delay(3000);
+    SDL_Delay(2000);
 }

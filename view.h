@@ -1,4 +1,3 @@
-
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -24,10 +23,16 @@ private:
     bool fail;
     SDL_Surface* load(char * path);
 	SDL_Surface* cloud;
-	SDL_Surface* plane;
+	SDL_Surface* plane[2];
+	SDL_Surface* eplane[4];
+	SDL_Surface* p[3];
+	int phase;
+	int dmg;
+	int count;
 //    SDL_Surface* text;
-//    Mix_Music * music;
-//    Mix_Chunk * food;
+    Mix_Music * music;
+    Mix_Chunk * bullet;
+	Mix_Chunk * explos;
     TTF_Font * font;
 };
 #endif
