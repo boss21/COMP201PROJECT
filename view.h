@@ -23,6 +23,8 @@ private:
     bool fail;
     SDL_Surface* load(char * path);
 	SDL_Surface* cloud;
+	SDL_Surface* win;
+	SDL_Surface* lose;
 	SDL_Surface* plane[2];
 	SDL_Surface* eplane[4];
 	SDL_Surface* p[3];
