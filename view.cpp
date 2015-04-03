@@ -55,13 +55,16 @@ View::View(string title, int width, int height) {
     }
     bullet = Mix_LoadWAV("assets/bullet.wav");
 	explos = Mix_LoadWAV("assets/explosion.wav");
-    // font = TTF_OpenFont( "assets/LiberationSans-Regular.ttf", 16 );
+    font = TTF_OpenFont( "assets/LiberationSans-Regular.ttf", 16 );
 }
 
 View::~View() {
+	TTF_CloseFont ( font );
+	TTF_Quit();
 	Mix_FreeMusic(music);
 	Mix_FreeChunk(bullet);
 	Mix_FreeChunk(explos);
+	SDL_FreeSurface(text);
     SDL_DestroyWindow(window);
     IMG_Quit();
     SDL_Quit();
@@ -87,6 +90,7 @@ SDL_Surface* View::load(char * path) {
 }
 
 void View::show(Model * model) {
+	SDL_Rect de;
 	SDL_Rect des;
 	SDL_Rect dest;
 	SDL_Rect destn;
@@ -97,7 +101,6 @@ void View::show(Model * model) {
 	destn.y = model->plane.y - 50;
 	destnn.x = model->eplane.x;
 	destnn.y = model->eplane.y;
-	
 	if (model->direction == SHOOT) {
         Mix_PlayChannel( -1, bullet, 0 );
     }
@@ -127,16 +130,16 @@ void View::show(Model * model) {
 		
 		if (dmg == 1)
 		{
+			SDL_Delay(300);
 			SDL_SetColorKey(eplane[1], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
 			SDL_BlitSurface(eplane[1], NULL, screen, &destnn );
 			Mix_PlayChannel( -1, bullet, 0 );
-          SDL_Delay(300);
 		}
 		if (dmg == 2)
 		{
+			SDL_Delay(300);
 			SDL_SetColorKey(eplane[2], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
 			SDL_BlitSurface(eplane[2], NULL, screen, &destnn );
-			SDL_Delay(300);
 		}
 		if (dmg == 3)
 		{
@@ -145,6 +148,8 @@ void View::show(Model * model) {
 			SDL_SetColorKey(plane[0], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
 			SDL_BlitSurface(plane[0], NULL, screen, &dest );
 			Mix_PlayChannel( -1, explos, 0 );
+			SDL_UpdateWindowSurface(window);
+			SDL_Delay(500);
 			SDL_BlitSurface( win, NULL, screen, NULL );
 			model->go(DEAD);
 		}
@@ -154,10 +159,25 @@ void View::show(Model * model) {
 		SDL_SetColorKey(plane[1], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
 		SDL_BlitSurface(plane[1], NULL, screen, &dest );
 		SDL_SetColorKey(eplane[3], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
-		SDL_BlitSurface(eplane[3], NULL, screen, &destnn );
+		SDL_BlitSurface(eplane[3], NULL, screen, &destnn );	
 		Mix_PlayChannel( -1, explos, 0 );
+		SDL_UpdateWindowSurface(window);
+		SDL_Delay(500);
 		SDL_BlitSurface( lose, NULL, screen, NULL );
 		model->go(DEAD);
+	}
+	if (model->eplane.y + 50 > 768)
+	{
+		SDL_BlitSurface( lose, NULL, screen, NULL );
+		model->go(DEAD);
+	}
+	if (model->direction != DEAD)
+	{
+	SDL_Color textColor = { 0, 0, 0 };
+    text = TTF_RenderText_Solid( font, "[ USE A to move left, D to move right, and SPACEBAR to shoot ]", textColor );
+    de.x = 306;
+    de.y = 18;
+    SDL_BlitSurface( text, NULL, screen, &de );
 	}
     SDL_UpdateWindowSurface(window);
 }

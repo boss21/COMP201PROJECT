@@ -39,6 +39,8 @@ while(!model->gameOver()) {
             case SDL_QUIT:
                 return;
             case SDL_KEYDOWN:
+			if (model->direction != DEAD)
+			{
                 switch(e.key.keysym.sym) {
 					case SDLK_a:
 					case SDLK_d:
@@ -49,15 +51,14 @@ while(!model->gameOver()) {
 					default:
 					break;
                 }
+			}
 				break;
 			case SDL_KEYUP:
 				model->direction = IDLE;
-				
 				break;
             }
         }
     }
     // TODO: show something nice? (ONLY USEFUL WHEN GAMEOVER)
-    view->show(model);
     SDL_Delay(2000);
 }

@@ -30,7 +30,7 @@ private:
 	SDL_Surface* p[3];
 	int phase;
 	int dmg;
-//    SDL_Surface* text;
+    SDL_Surface* text;
     Mix_Music * music;
     Mix_Chunk * bullet;
 	Mix_Chunk * explos;
