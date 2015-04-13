@@ -39,7 +39,7 @@ void Model::move() {
 	}
 }
 void Model::AIM() {
-	if (eplane.y < 768)
+	if (eplane.y < 768) // maybe change to 718
 	{
 			eplane.y ++;
 	}

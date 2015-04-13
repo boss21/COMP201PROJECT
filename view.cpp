@@ -55,7 +55,7 @@ View::View(string title, int width, int height) {
     }
     bullet = Mix_LoadWAV("assets/bullet.wav");
 	explos = Mix_LoadWAV("assets/explosion.wav");
-    font = TTF_OpenFont( "assets/LiberationSans-Regular.ttf", 16 );
+    font = TTF_OpenFont( "assets/LiberationSans-Regular.ttf", 20 );
 }
 
 View::~View() {
@@ -90,6 +90,7 @@ SDL_Surface* View::load(char * path) {
 }
 
 void View::show(Model * model) {
+	SDL_Rect d;
 	SDL_Rect de;
 	SDL_Rect des;
 	SDL_Rect dest;
@@ -148,8 +149,21 @@ void View::show(Model * model) {
 			SDL_SetColorKey(plane[0], SDL_TRUE, SDL_MapRGB(screen->format,0x00,0x00,0x00));
 			SDL_BlitSurface(plane[0], NULL, screen, &dest );
 			Mix_PlayChannel( -1, explos, 0 );
+			
+			SDL_Color textColor = { 51, 51, 0 };
+			text = TTF_RenderText_Solid( font, "[ USE A to move LEFT, D to move RIGHT, and SPACEBAR to SHOOT ]", textColor );
+			de.x = 330;
+			de.y = 18;
+			SDL_BlitSurface( text, NULL, screen, &de );
+			
+			SDL_Color textColor1 = { 204, 0, 0 };
+			text = TTF_RenderText_Solid( font, "SCORE: 1000", textColor1 );
+			d.x = 110;
+			d.y = 18;
+			SDL_BlitSurface( text, NULL, screen, &d );
+			
 			SDL_UpdateWindowSurface(window);
-			SDL_Delay(500);
+			SDL_Delay(4000);
 			SDL_BlitSurface( win, NULL, screen, NULL );
 			model->go(DEAD);
 		}
@@ -168,16 +182,23 @@ void View::show(Model * model) {
 	}
 	if (model->eplane.y + 50 > 768)
 	{
+		Mix_PlayChannel( -1, explos, 0 );
 		SDL_BlitSurface( lose, NULL, screen, NULL );
 		model->go(DEAD);
 	}
 	if (model->direction != DEAD)
 	{
-	SDL_Color textColor = { 0, 0, 0 };
-    text = TTF_RenderText_Solid( font, "[ USE A to move left, D to move right, and SPACEBAR to shoot ]", textColor );
-    de.x = 306;
+	SDL_Color textColor = { 51, 51, 0 };
+    text = TTF_RenderText_Solid( font, "[ USE A to move LEFT, D to move RIGHT, and SPACEBAR to SHOOT ]", textColor );
+    de.x = 330;
     de.y = 18;
     SDL_BlitSurface( text, NULL, screen, &de );
+	
+	SDL_Color textColor1 = { 204, 0, 0 };
+    text = TTF_RenderText_Solid( font, "SCORE: 0", textColor1 );
+    d.x = 110;
+    d.y = 18;
+    SDL_BlitSurface( text, NULL, screen, &d );
 	}
     SDL_UpdateWindowSurface(window);
 }
